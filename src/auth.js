@@ -27,9 +27,16 @@ export async function signIn() {
 // Create a simplified view of the user, with an extra method for creating the auth headers
 function formatUser(user) {
   console.log('User Authenticated', { user });
+  console.log('Cognito profile claims:', user.profile);
+
+  const displayName =
+    user.profile.name ||
+    user.profile.preferred_username ||
+    user.profile.email ||
+    user.profile['cognito:username'];
+
   return {
-    // If you add any other profile scopes, you can include them here
-    username: user.profile['cognito:username'],
+    username: displayName,
     email: user.profile.email,
     idToken: user.id_token,
     accessToken: user.access_token,
@@ -39,6 +46,7 @@ function formatUser(user) {
     }),
   };
 }
+
 
 export async function getUser() {
   // First, check if we're handling a signin redirect callback (e.g., is ?code=... in URL)
