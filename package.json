@@ -2,20 +2,25 @@
   "name": "fragments-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html --port 1234"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RasaReiszadeh/fragments-ui.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Rasa Reiszadeh",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
     "url": "https://github.com/RasaReiszadeh/fragments-ui/issues"
   },
-  "homepage": "https://github.com/RasaReiszadeh/fragments-ui#readme"
+  "homepage": "https://github.com/RasaReiszadeh/fragments-ui#readme",
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  },
+  "dependencies": {
+    "oidc-client-ts": "^3.4.1"
+  }
 }
