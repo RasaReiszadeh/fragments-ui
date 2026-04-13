@@ -2,7 +2,7 @@ import { signIn, getUser } from './auth';
 
 const API_URL = process.env.API_URL;
 
-// Create a fragment (text or image)
+
 async function createFragment(user) {
   const type = document.querySelector('#fragmentType').value.trim();
   const result = document.querySelector('#result');
@@ -15,7 +15,7 @@ async function createFragment(user) {
       result.innerHTML = `<p style="color:red;">Please select an image file.</p>`;
       return;
     }
-    body = await fileInput.files[0].arrayBuffer();
+    body = Buffer.from(await fileInput.files[0].arrayBuffer());
   } else {
     const content = document.querySelector('#fragmentContent').value;
     body = content;
@@ -44,7 +44,7 @@ async function createFragment(user) {
   }
 }
 
-// Update an existing fragment
+
 async function updateFragment(user, id, type) {
   const newContent = prompt(`Enter new content for fragment ${id}:`);
   if (newContent === null) return;
@@ -65,7 +65,7 @@ async function updateFragment(user, id, type) {
   }
 }
 
-// Delete a fragment
+
 async function deleteFragment(user, id) {
   if (!confirm(`Delete fragment ${id}?`)) return;
 
@@ -85,7 +85,7 @@ async function deleteFragment(user, id) {
   }
 }
 
-// View/convert a fragment
+
 async function viewFragment(user, id, type) {
   let ext = '';
 
@@ -125,7 +125,7 @@ async function viewFragment(user, id, type) {
   }
 }
 
-// Load and display all fragments
+
 async function loadFragments(user) {
   const list = document.querySelector('#fragmentsList');
   try {
@@ -162,7 +162,6 @@ async function loadFragments(user) {
   }
 }
 
-// Toggle content/file input based on type
 function handleTypeChange() {
   const type = document.querySelector('#fragmentType').value;
   const contentArea = document.querySelector('#contentArea');
@@ -193,7 +192,7 @@ async function init() {
   userSection.querySelector('.username').innerText = user.username;
   loginBtn.disabled = true;
 
-  // Expose functions for inline onclick handlers
+
   window.__viewFragment = (id, type) => viewFragment(user, id, type);
   window.__updateFragment = (id, type) => updateFragment(user, id, type);
   window.__deleteFragment = (id) => deleteFragment(user, id);
