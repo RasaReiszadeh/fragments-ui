@@ -15,7 +15,7 @@ async function createFragment(user) {
       result.innerHTML = `<p style="color:red;">Please select an image file.</p>`;
       return;
     }
-    body = Buffer.from(await fileInput.files[0].arrayBuffer());
+    body = await fileInput.files[0].arrayBuffer();
   } else {
     const content = document.querySelector('#fragmentContent').value;
     body = content;
